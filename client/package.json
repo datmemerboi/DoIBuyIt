@@ -1,0 +1,28 @@
+{
+  "name": "doibuyit",
+  "version": "1.0.1",
+  "main": "dist/index.js",
+  "repository": "https://github.com/datmemerboi/DoIBuyIt.git",
+  "author": "datmemerboi <datmemerboit.github.io>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@ant-design/nextjs-registry": "^1.0.1",
+    "antd": "^5.21.3",
+    "next": "^14.2.15",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "22.7.5",
+    "@types/react": "18.3.11",
+    "eslint": "^9.12.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3"
+  }
+}
