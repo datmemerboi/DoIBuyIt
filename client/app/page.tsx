@@ -4,6 +4,8 @@ import Head from "next/head";
 import Input from "@/components/Input";
 import ProductCard from "@/components/ProductCard";
 
+const productCardsContainer = "flex flex-row flex-wrap justify-center";
+
 const App: React.FC = () => {
   // const { Search } = Input;
   // const { Meta } = Card;
@@ -20,9 +22,10 @@ const App: React.FC = () => {
   // ];
 
   return (
-    <>
+    <div>
       <Head>
         <title>Do I Buy It??</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
       <div className="flex flex-col flex-wrap justify-center">
@@ -30,9 +33,14 @@ const App: React.FC = () => {
           <Input type="main-search" placeholder="Search for product..." />
         </div>
 
-        <ProductCard title="abc" description="lorem ipsum" price={35} />
+        <div className={productCardsContainer}>
+          <ProductCard title="abc" description="lorem ipsum" price={35.01} />
+          <ProductCard title="abc" description="lorem ipsum" price={35.50} />
+          <ProductCard title="abc" description="lorem ipsum" price={35.00} />
+          <ProductCard title="abc" description="lorem ipsum" price={35.12} />
+        </div>
       </div>
-    </>
+    </div>
     /* <Search
           size="large"
           addonBefore="Do I Buy"
