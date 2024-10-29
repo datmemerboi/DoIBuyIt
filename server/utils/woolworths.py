@@ -1,34 +1,30 @@
 class WoolworthsProduct:
     def __init__(self):
         self.barcode: str = None
+        self.stockcode: str = None
         self.name: str = None
-        self.display_name: str = None
         self.slug: str = None
         self.price: float = None
-        self.source_url: str = None
         self.cost_per_unit: float = None
         self.cost_per_unit_measure: str = None
-        self.images: dict[str, str] = {
-            "small": None,
-            "medium": None,
-            "large": None,
-        }
-        self.brand: str = None
         self.previous_price: float = None
+        self.brand: str = None
+        self.image: str = None
+
+        self.source_base_url: str = "https://www.woolworths.com.au/shop/productdetails"
 
     def to_dict(self) -> dict:
         return {
             "barcode": self.barcode,
+            "stockcode": self.stockcode,
             "name": self.name,
-            "display_name": self.display_name,
             "slug": self.slug,
             "price": self.price,
-            "source_url": self.source_url,
             "cost_per_unit": self.cost_per_unit,
             "cost_per_unit_measure": self.cost_per_unit_measure,
-            "images": self.images,
-            "brand": self.brand,
             "previous_price": self.previous_price,
+            "brand": self.brand,
+            "image": self.image,
         }
 
 
@@ -38,22 +34,17 @@ def scrape_to_woolworths_product(scrape_product: dict):
     """
     prod = WoolworthsProduct()
     prod.barcode = scrape_product["Barcode"]
-    prod.name = scrape_product["Name"]
-    prod.display_name = scrape_product["DisplayName"]
+    prod.stockcode = scrape_product["Stockcode"]
+    prod.name = scrape_product["DisplayName"]
     prod.slug = scrape_product["UrlFriendlyName"]
     prod.price = scrape_product["Price"]
-    prod.source_url = f"https://www.woolworths.com.au/shop/productdetails/{scrape_product['Stockcode']}/{scrape_product['UrlFriendlyName']}"
     prod.cost_per_unit = scrape_product["CupPrice"]
     prod.cost_per_unit_measure = scrape_product["CupMeasure"]
-    prod.images = {
-        "small": scrape_product["SmallImageFile"],
-        "medium": scrape_product["MediumImageFile"],
-        "large": scrape_product["LargeImageFile"],
-    }
-    prod.brand = scrape_product["Brand"]
     prod.previous_price = (
         scrape_product["WasPrice"] if scrape_product["WasPrice"] else None
     )
+    prod.brand = scrape_product["Brand"]
+    prod.image = scrape_product["MediumImageFile"]
     return prod
 
 
