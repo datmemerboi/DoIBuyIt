@@ -3,22 +3,17 @@ from requests_cache import CachedSession
 
 
 class Woolworths:
-    _session_id: int = None
     name: str = "Woolworths"
+    vendor: str = "W"
+    category_url: str = "https://www.woolworths.com.au/apis/ui/browse/category"
 
     headers: dict = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
     }
 
     @staticmethod
-    def category(category_name: str) -> list:
-        session = CachedSession()
-
-        if Woolworths._session_id is None:
-            session.get("https://www.woolworths.com.au", refresh=True)
-            Woolworths._session_id = id(session)
-
-        url = "https://www.woolworths.com.au/apis/ui/browse/category"
+    def category(session: CachedSession, category_name: str, page: int = 1, size: int = 36) -> list:
+        url = Woolworths.category_url
         headers = {
             "Accept": "application/json, */*",
             "Content-Type": "application/json",
@@ -27,8 +22,8 @@ class Woolworths:
         }
         body = {
             "categoryId": "specialsgroup.3676",
-            "pageNumber": 1,
-            "pageSize": 36,
+            "pageNumber": page,
+            "pageSize": size,
             "sortType": "TraderRelevance",
             "url": "/shop/browse/specials/half-price",
             "location": "/shop/browse/specials/half-price",
@@ -45,7 +40,7 @@ class Woolworths:
             "groupEdmVariants": True,
             "categoryVersion": "v2",
         }
-        res = session.post(url=url, headers=headers, json=body, timeout=10)
+        res = session.post(url=url, headers=headers, json=body, timeout=30)
 
         if res.status_code != 200:
             print(res.status_code)
