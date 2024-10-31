@@ -16,7 +16,7 @@ class WoolworthsProduct:
     def to_dict(self) -> dict:
         return {
             "barcode": self.barcode,
-            "stockcode": self.stockcode,
+            "wwl_stockcode": self.stockcode,
             "name": self.name,
             "slug": self.slug,
             "price": self.price,
