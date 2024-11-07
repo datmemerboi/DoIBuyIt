@@ -303,5 +303,20 @@
     "id": "1_61D6FEB_SPECIALS",
     "name": "Pet Specials",
     "url": "/shop/browse/pet/pet-specials"
+  },
+  "LowShelf": {
+    "id": "specialsgroup.3681",
+    "name": "Lower Shelf Price",
+    "url": "/shop/browse/specials/lower-shelf-price?icmpid=sm-prnav-sc-lowershelfprice"
+  },
+  "PriceDrop": {
+    "id": "specialsgroup.3674",
+    "name": "Prices Drop",
+    "url": "/shop/browse/specials/prices-dropped"
+  },
+  "HalfPrice": {
+    "id": "specialsgroup.3676",
+    "name": "Half Price",
+    "url": "/shop/browse/specials/half-price"
   }
 }
