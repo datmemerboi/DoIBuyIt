@@ -1,5 +1,7 @@
 from datetime import datetime, timedelta
 
+from config.constants import CSV_NAME_PREFIX_FORMAT
+
 
 def get_previous_wednesday(since: datetime = datetime.now()) -> datetime:
     """Get the latest Wednesday before the given date"""
@@ -21,8 +23,8 @@ def get_upcoming_tuesday(since: datetime = datetime.now()) -> datetime:
         days_until_tuesday += 7
 
     return (since + timedelta(days=days_until_tuesday)).replace(
-        hour=23, minute=59, second=59
+        hour=23, minute=59, second=59, microsecond=900000
     )
 
-
-get_previous_wednesday(datetime.strptime("2024-10-01", "%Y-%m-%d"))
+def make_prefix() -> str:
+    return datetime.now().strftime(CSV_NAME_PREFIX_FORMAT)
