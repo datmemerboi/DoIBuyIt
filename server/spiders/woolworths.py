@@ -1,10 +1,12 @@
 from urllib.parse import urlencode
 from requests_cache import CachedSession
 
+from utils.category import get_category_id_url
+
 
 class Woolworths:
     name: str = "Woolworths"
-    vendor: str = "W"
+    vendor: str = "WWL"
     category_url: str = "https://www.woolworths.com.au/apis/ui/browse/category"
 
     headers: dict = {
@@ -12,8 +14,15 @@ class Woolworths:
     }
 
     @staticmethod
-    def category(session: CachedSession, category_name: str, page: int = 1, size: int = 36) -> list:
+    def category(
+        session: CachedSession, category_name: str, page: int = 1, size: int = 36
+    ) -> list:
         url = Woolworths.category_url
+        category_id, category_url = get_category_id_url(Woolworths.vendor, category_name)
+        if category_id is None or category_url is None:
+            print(f"Category not found: {category_name}")
+            return []
+
         headers = {
             "Accept": "application/json, */*",
             "Content-Type": "application/json",
@@ -21,12 +30,12 @@ class Woolworths:
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.",
         }
         body = {
-            "categoryId": "specialsgroup.3676",
+            "categoryId": category_id,
             "pageNumber": page,
             "pageSize": size,
             "sortType": "TraderRelevance",
-            "url": "/shop/browse/specials/half-price",
-            "location": "/shop/browse/specials/half-price",
+            "url": category_url,
+            "location": category_url,
             "formatObject": '{"name":"Half Price"}',
             "isSpecial": True,
             "isBundle": False,
