@@ -1,0 +1,322 @@
+{
+  "FnV": {
+    "id": "1-E5BEE36E",
+    "name": "Fruit & Veg",
+    "url": "/shop/browse/fruit-veg"
+  },
+  "FnVS": {
+    "id": "1-E5BEE36E_SPECIALS",
+    "name": "Fruit & Veg Specials",
+    "url": "/shop/browse/fruit-veg/fruit-veg-specials"
+  },
+  "Fruits": {
+    "id": "1-5931EE89",
+    "name": "Fruits",
+    "url": "/shop/browse/fruit-veg/fruits"
+  },
+  "Vegetables": {
+    "id": "1_AC17EDD",
+    "name": "Vegetables",
+    "url": "/shop/browse/fruit-veg/vegetables"
+  },
+  "PMS": {
+    "id": "1_D5A2236",
+    "name": "Poultry, Meat & Seafood",
+    "url": "/shop/browse/poultry-meat-seafood"
+  },
+  "PMSS": {
+    "id": "1_D5A2236_SPECIALS",
+    "name": "Poultry, Meat & Seafood Specials",
+    "url": "/shop/browse/poultry-meat-seafood/poultry-meat-seafood-specials"
+  },
+  "Poultry": {
+    "id": "1_2B67965",
+    "name": "Poultry",
+    "url": "/shop/browse/poultry-meat-seafood/poultry"
+  },
+  "Seafood": {
+    "id": "1_D610306",
+    "name": "Seafood",
+    "url": "/shop/browse/poultry-meat-seafood/seafood"
+  },
+  "Meat": {
+    "id": "1_CED9B86",
+    "name": "Meat",
+    "url": "/shop/browse/poultry-meat-seafood/meat"
+  },
+  "B": {
+    "id": "1_DEB537E",
+    "name": "Bakery",
+    "url": "/shop/browse/bakery"
+  },
+  "BS": {
+    "id": "1_DEB537E_SPECIALS",
+    "name": "Bakery Specials",
+    "url": "/shop/browse/bakery/bakery-specials"
+  },
+  "DCM": {
+    "id": "1_3151F6F",
+    "name": "Deli & Chilled Meals",
+    "url": "/shop/browse/deli-chilled-meals"
+  },
+  "DCMS": {
+    "id": "1_3151F6F_SPECIALS",
+    "name": "Deli & Chilled Meals Specials",
+    "url": "/shop/browse/deli-chilled-meals/deli-chilled-meals-specials"
+  },
+  "DEF": {
+    "id": "1_6E4F4E4",
+    "name": "Dairy, Eggs & Fridge",
+    "url": "/shop/browse/dairy-eggs-fridge"
+  },
+  "DEFS": {
+    "id": "1_6E4F4E4_SPECIALS",
+    "name": "Dairy, Eggs & Fridge Specials",
+    "url": "/shop/browse/dairy-eggs-fridge/dairy-eggs-fridge-specials"
+  },
+  "Pnt": {
+    "id": "1_39FD49C",
+    "name": "Pantry",
+    "url": "/shop/browse/pantry"
+  },
+  "PntS": {
+    "id": "1_39FD49C_SPECIALS",
+    "name": "Pantry Specials",
+    "url": "/shop/browse/pantry/pantry-specials"
+  },
+  "BfS": {
+    "id": "1_C7A623D",
+    "name": "Breakfast & Spreads",
+    "url": "/shop/browse/pantry/breakfast-spreads"
+  },
+  "TnC": {
+    "id": "1_8A702B7",
+    "name": "Tea & Coffee",
+    "url": "/shop/browse/pantry/tea-coffee"
+  },
+  "Bkg": {
+    "id": "1_8458E3A",
+    "name": "Baking",
+    "url": "/shop/browse/pantry/baking"
+  },
+  "HnS": {
+    "id": "1_F779C5C",
+    "name": "Herbs & Spices",
+    "url": "/shop/browse/pantry/herbs-spices"
+  },
+  "Cnd": {
+    "id": "1_F43CC25",
+    "name": "Condiments",
+    "url": "/shop/browse/pantry/condiments"
+  },
+  "PRG": {
+    "id": "1_B5F8608",
+    "name": "Pasta, Rice & Grains",
+    "url": "/shop/browse/pantry/pasta-rice-grains"
+  },
+  "CS": {
+    "id": "1_83608CE",
+    "name": "Cooking Sauces & Recipe Bases",
+    "url": "/shop/browse/pantry/cooking-sauces-recipe-bases"
+  },
+  "OV": {
+    "id": "1_E216643",
+    "name": "Oil & Vinegar",
+    "url": "/shop/browse/pantry/oil-vinegar"
+  },
+  "IF": {
+    "id": "1_F229FBE",
+    "name": "International Foods",
+    "url": "/shop/browse/international-foods"
+  },
+  "IFS": {
+    "id": "1_F229FBE_SPECIALS",
+    "name": "International Foods Specials",
+    "url": "/shop/browse/international-foods/international-foods-specials"
+  },
+  "Mx": {
+    "id": "1_77690B9",
+    "name": "Mexican",
+    "url": "/shop/browse/international-foods/mexican"
+  },
+  "As": {
+    "id": "1_51BC40C",
+    "name": "Asian",
+    "url": "/shop/browse/international-foods/asian"
+  },
+  "Ind": {
+    "id": "1_3568C3F",
+    "name": "Indian & South Asian",
+    "url": "/shop/browse/international-foods/indian-south-asian"
+  },
+  "SC": {
+    "id": "1_717445A",
+    "name": "Snacks & Confectionery",
+    "url": "/shop/browse/snacks-confectionery"
+  },
+  "SCS": {
+    "id": "1_717445A_SPECIALS",
+    "name": "Snacks & Confectionery Specials",
+    "url": "/shop/browse/snacks-confectionery/snacks-confectionery-specials"
+  },
+  "Cnf": {
+    "id": "1_B3139DF",
+    "name": "Confectionery",
+    "url": "/shop/browse/snacks-confectionery/confectionery"
+  },
+  "BnC": {
+    "id": "1_6F15A6A",
+    "name": "Biscuits & Crackers",
+    "url": "/shop/browse/snacks-confectionery/biscuits-crackers"
+  },
+  "C": {
+    "id": "1_3F5B6B6",
+    "name": "Chips",
+    "url": "/shop/browse/snacks-confectionery/chips"
+  },
+  "Snk": {
+    "id": "1_99CAF0C",
+    "name": "Snacks",
+    "url": "/shop/browse/snacks-confectionery/snacks"
+  },
+  "GML": {
+    "id": "1_12FABCA",
+    "name": "| Gum, Mints & Lozenges",
+    "url": "/shop/browse/snacks-confectionery/gum-mints-lozenges"
+  },
+  "Frz": {
+    "id": "1_ACA2FC2",
+    "name": "Freezer",
+    "url": "/shop/browse/freezer"
+  },
+  "FrzS": {
+    "id": "1_ACA2FC2_SPECIALS",
+    "name": "Freezer Specials",
+    "url": "/shop/browse/freezer/freezer-specials"
+  },
+  "D": {
+    "id": "1_5AF3A0A",
+    "name": "Drinks",
+    "url": "/shop/browse/drinks"
+  },
+  "DS": {
+    "id": "1_5AF3A0A_SPECIALS",
+    "name": "Drinks Specials",
+    "url": "/shop/browse/drinks/drinks-specials"
+  },
+  "HnW": {
+    "id": "1_9851658",
+    "name": "Health & Wellbeing",
+    "url": "/shop/browse/health-wellbeing"
+  },
+  "HnWS": {
+    "id": "1_9851658_SPECIALS",
+    "name": "Health & Wellbeing Specials",
+    "url": "/shop/browse/health-wellbeing/health-wellbeing-specials"
+  },
+  "BPC": {
+    "id": "1_894D0A8",
+    "name": "Beauty & Personal Care",
+    "url": "/shop/browse/beauty-personal-care"
+  },
+  "BPCS": {
+    "id": "1_894D0A8_SPECIALS",
+    "name": "Beauty & Personal Care Specials",
+    "url": "/shop/browse/beauty-personal-care/beauty-personal-care-specials"
+  },
+  "SBB": {
+    "id": "1_8B886DE",
+    "name": "Shower, Bath & Body",
+    "url": "/shop/browse/beauty-personal-care/shower-bath-body"
+  },
+  "OC": {
+    "id": "1_6DCE3C5",
+    "name": "Oral Care",
+    "url": "/shop/browse/beauty-personal-care/oral-care"
+  },
+  "PCC": {
+    "id": "1_A6EDC50",
+    "name": "Period & Continence Care",
+    "url": "/shop/browse/beauty-personal-care/period-continence-care"
+  },
+  "HC": {
+    "id": "1_098A313",
+    "name": "Hair Care",
+    "url": "/shop/browse/beauty-personal-care/hair-care"
+  },
+  "Bby": {
+    "id": "1_717A94B",
+    "name": "Baby",
+    "url": "/shop/browse/baby"
+  },
+  "BbyS": {
+    "id": "1_717A94B_SPECIALS",
+    "name": "Baby Specials",
+    "url": "/shop/browse/baby/baby-specials"
+  },
+  "HnL": {
+    "id": "1_DEA3ED5",
+    "name": "Home & Lifestyle",
+    "url": "/shop/browse/home-lifestyle"
+  },
+  "HnLS": {
+    "id": "1_DEA3ED5_SPECIALS",
+    "name": "Home & Lifestyle Specials",
+    "url": "/shop/browse/home-lifestyle/home-lifestyle-specials"
+  },
+  "CnM": {
+    "id": "1_2432B58",
+    "name": "Cleaning & Maintenance",
+    "url": "/shop/browse/cleaning-maintenance"
+  },
+  "CnMS": {
+    "id": "1_2432B58_SPECIALS",
+    "name": "Cleaning & Maintenance Specials",
+    "url": "/shop/browse/cleaning-maintenance/cleaning-maintenance-specials"
+  },
+  "K": {
+    "id": "1_A2E3843",
+    "name": "Kitchen",
+    "url": "/shop/browse/cleaning-maintenance/kitchen"
+  },
+  "L": {
+    "id": "1_2F587AA",
+    "name": "Laundry",
+    "url": "/shop/browse/cleaning-maintenance/laundry"
+  },
+  "TPTPT": {
+    "id": "1_691F830",
+    "name": "Toilet Paper, Tissues & Paper Towels",
+    "url": "/shop/browse/cleaning-maintenance/toilet-paper-tissues-paper-towels"
+  },
+  "CG": {
+    "id": "1_6174AF3",
+    "name": "Cleaning Goods",
+    "url": "/shop/browse/cleaning-maintenance/cleaning-goods"
+  },
+  "Pet": {
+    "id": "1_61D6FEB",
+    "name": "Pet",
+    "url": "/shop/browse/pet"
+  },
+  "PetS": {
+    "id": "1_61D6FEB_SPECIALS",
+    "name": "Pet Specials",
+    "url": "/shop/browse/pet/pet-specials"
+  },
+  "LowShelf": {
+    "id": "specialsgroup.3681",
+    "name": "Lower Shelf Price",
+    "url": "/shop/browse/specials/lower-shelf-price?icmpid=sm-prnav-sc-lowershelfprice"
+  },
+  "PriceDrop": {
+    "id": "specialsgroup.3674",
+    "name": "Prices Drop",
+    "url": "/shop/browse/specials/prices-dropped"
+  },
+  "HalfPrice": {
+    "id": "specialsgroup.3676",
+    "name": "Half Price",
+    "url": "/shop/browse/specials/half-price"
+  }
+}

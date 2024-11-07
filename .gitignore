@@ -13,3 +13,12 @@ node_modules/
 **/build/*
 **/dist/*
 **/.next/*
+
+# Cache
+**__pycache__*
+**/.cache/*
+**_cache.*
+
+# Data sample
+**/data/*
+**_output.*
