@@ -30,6 +30,7 @@ parsel==1.9.1
 pip-autoremove==0.10.0
 platformdirs==4.3.6
 Protego==0.3.1
+psycopg2==2.9.10
 pyasn1==0.6.1
 pyasn1_modules==0.4.1
 pyclean==3.0.0
