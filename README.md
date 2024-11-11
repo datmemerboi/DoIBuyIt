@@ -25,7 +25,7 @@ Check barcodes [here](https://www.mustakshif.com/product/detail/9300617408710)
 
 ### Product table
 
-| **barcode** | **wwl_stockcode** | **name** | **slug** | **brand** | **image** |
+| **barcode** | **name** | **brand** | **image** |
 |---|---|---|---|---|---|
 | 9300617408710 | 320104 | Cadbury Twirl Milk Chocolate Bar 39g | cadbury-twirl-milk-chocolate-bar-chocolate-bar | Cadbury | https://cdn1.woolworths.media/content/wowproductimages/medium/320104.jpg |
 
