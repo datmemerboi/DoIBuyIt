@@ -1,30 +1,37 @@
+from utils.date import get_previous_wednesday, get_upcoming_tuesday
+
+
 class WoolworthsProduct:
     def __init__(self):
         self.barcode: str = None
-        self.stockcode: str = None
         self.name: str = None
-        self.slug: str = None
-        self.price: float = None
-        self.cost_per_unit: float = None
-        self.cost_per_unit_measure: str = None
-        self.previous_price: float = None
         self.brand: str = None
         self.image: str = None
 
-        self.source_base_url: str = "https://www.woolworths.com.au/shop/productdetails"
+        self.price: float = None
+        self.viewed_date: str = None
+        self.tentative_end_date: str = None
+        self.cost_per_unit: float = None
+        self.cost_per_unit_measure: str = None
+        self.previous_price: float = None
+
+        self.vendor: str = "WWL"
+        self.url: str = None
 
     def to_dict(self) -> dict:
         return {
             "barcode": self.barcode,
-            "wwl_stockcode": self.stockcode,
             "name": self.name,
-            "slug": self.slug,
+            "brand": self.brand,
+            "image": self.image,
             "price": self.price,
+            "viewed_date": self.viewed_date,
+            "tentative_end_date": self.tentative_end_date,
             "cost_per_unit": self.cost_per_unit,
             "cost_per_unit_measure": self.cost_per_unit_measure,
             "previous_price": self.previous_price,
-            "brand": self.brand,
-            "image": self.image,
+            "vendor": self.vendor,
+            "url": self.url,
         }
 
 
@@ -34,17 +41,21 @@ def scrape_to_woolworths_product(scrape_product: dict):
     """
     prod = WoolworthsProduct()
     prod.barcode = scrape_product["Barcode"]
-    prod.stockcode = scrape_product["Stockcode"]
     prod.name = scrape_product["DisplayName"]
-    prod.slug = scrape_product["UrlFriendlyName"]
+    prod.brand = scrape_product["Brand"]
+    prod.image = scrape_product["LargeImageFile"]
+
     prod.price = scrape_product["Price"]
+    prod.viewed_date = get_previous_wednesday()
+    prod.tentative_end_date = get_upcoming_tuesday()
     prod.cost_per_unit = scrape_product["CupPrice"]
     prod.cost_per_unit_measure = scrape_product["CupMeasure"]
     prod.previous_price = (
         scrape_product["WasPrice"] if scrape_product["WasPrice"] else None
     )
-    prod.brand = scrape_product["Brand"]
-    prod.image = scrape_product["MediumImageFile"]
+
+    prod.url = f"https://www.woolworths.com.au/shop/productdetails/{scrape_product['Stockcode']}/{scrape_product['UrlFriendlyName']}"
+
     return prod
 
 
