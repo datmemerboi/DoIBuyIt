@@ -1,5 +1,6 @@
 from urllib.parse import urlencode
-from requests_cache import CachedSession
+
+from requests import Session
 
 from utils.category import get_category_id_url
 
@@ -15,7 +16,7 @@ class Woolworths:
 
     @staticmethod
     def category(
-        session: CachedSession, category_name: str, page: int = 1, size: int = 36
+        session: Session, category_name: str, page: int = 1, size: int = 36
     ) -> list:
         url = Woolworths.category_url
         category_id, category_url = get_category_id_url(Woolworths.vendor, category_name)
