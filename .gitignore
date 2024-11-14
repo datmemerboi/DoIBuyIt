@@ -18,6 +18,7 @@ node_modules/
 **__pycache__*
 **/.cache/*
 **_cache.*
+*.DS_Store
 
 # Data sample
 **/data/*

@@ -1,43 +1,32 @@
 import React from "react";
-import Head from "next/head";
 
 import Input from "@/components/Input";
 import ProductCard from "@/components/ProductCard";
 
 const productCardsContainer = "flex flex-row flex-wrap justify-center";
 
-const App: React.FC = () => {
-  // const { Search } = Input;
-  // const { Meta } = Card;
-
-  // const items: MenuProps["items"] = [
-  //   {
-  //     key: "1",
-  //     label: "Woolworths"
-  //   },
-  //   {
-  //     key: "2",
-  //     label: "Coles"
-  //   }
-  // ];
+const App: React.FC = async () => {
+  let prodReq = await fetch("http://localhost:8080/products");
+  let products = await prodReq.json();
 
   return (
     <div>
-      <Head>
-        <title>Do I Buy It??</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
-
       <div className="flex flex-col flex-wrap justify-center">
         <div className="flex flex-row justify-center">
           <Input type="main-search" placeholder="Search for product..." />
         </div>
 
         <div className={productCardsContainer}>
-          <ProductCard title="abc" description="lorem ipsum" price={35.01} />
-          <ProductCard title="abc" description="lorem ipsum" price={35.50} />
-          <ProductCard title="abc" description="lorem ipsum" price={35.00} />
-          <ProductCard title="abc" description="lorem ipsum" price={35.12} />
+          {products.map((product) => (
+            <ProductCard
+              key={product.barcode}
+              title={product.name}
+              vendor="Woolworths"
+              brand={product.brand}
+              price={35.01}
+              image={product.image}
+            />
+          ))}
         </div>
       </div>
     </div>
@@ -65,3 +54,7 @@ const App: React.FC = () => {
 };
 
 export default App;
+export const metadata = {
+  title: "Do I Buy It?",
+  description: "A simple price comparison site"
+};
