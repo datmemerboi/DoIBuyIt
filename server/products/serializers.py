@@ -13,6 +13,11 @@ class VendorProductSerializer(serializers.ModelSerializer):
         model = VendorProduct
         fields = "__all__"
 
+# TODO: ProductPriceSerializer biding barcode with top 2 prices,
+# preferably with unique vendors.
+
+# TODO: Use the same searializer, with additional args to fetch
+# entire price history of the product.
 
 class PriceSerializer(serializers.ModelSerializer):
     class Meta:
