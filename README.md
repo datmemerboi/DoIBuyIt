@@ -3,7 +3,7 @@ Do I Buy It?
 
 From Woolies or Coles?
 
-Check barcodes [here](https://www.mustakshif.com/product/detail/9300617408710)
+Check barcodes [here](https://www.mustakshif.com/product/detail/9300617408710) and [here](https://world.openfoodfacts.org/api/v0/product/93561471.json)
 
 ## Data structure
 

@@ -1,4 +1,3 @@
-from os import environ
 import pandas as pd
 from django.db import transaction
 
@@ -13,6 +12,8 @@ def load_product_data(df: pd.DataFrame):
     """
     print("Loading product data into the database")
     all_barcordes = df["barcode"].unique().tolist()
+    print(df['barcode'].size)
+    df.drop_duplicates("barcode", inplace=True)
     product_list = df.to_dict(orient="records")
 
     # Identify records by barcode
@@ -37,6 +38,6 @@ def load_product_data(df: pd.DataFrame):
         if insert_records:
             Product.objects.bulk_create(insert_records)
         if update_records:
-            Product.objects.abulk_update(
+            Product.objects.bulk_update(
                 update_records, fields=["name", "brand", "image"]
             )
