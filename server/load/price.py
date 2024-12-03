@@ -56,10 +56,10 @@ def load_vendor_product_data(df: pd.DataFrame):
             )
 
     print(
-        f"Inserting {colors.BLUE}{len(insert_records)}{colors.RESET} new vendor-products"
+        f"Inserting {colors.BLUE}{len(insert_records)} new{colors.RESET} vendor-products"
     )
     print(
-        f"Updating {colors.YELLOW}{len(update_records)}{colors.RESET} existing vendor-products"
+        f"Updating {colors.YELLOW}{len(update_records)} existing{colors.RESET} vendor-products"
     )
 
     with transaction.atomic():
@@ -136,9 +136,9 @@ def load_price_data(df: pd.DataFrame):
                 )
             )
 
-    print(f"Inserting {colors.BLUE}{len(insert_records)}{colors.RESET} new prices")
+    print(f"Inserting {colors.BLUE}{len(insert_records)} new{colors.RESET} prices")
     print(
-        f"Updating {colors.YELLOW}{len(update_records)}{colors.RESET} existing prices"
+        f"Updating {colors.YELLOW}{len(update_records)} existing{colors.RESET} prices"
     )
 
     with transaction.atomic():
