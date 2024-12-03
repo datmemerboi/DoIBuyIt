@@ -1,4 +1,4 @@
-from utils.date import get_previous_wednesday, get_upcoming_tuesday
+from utils.date import get_previous_wednesday, get_upcoming_tuesday, to_format_str
 
 
 class WoolworthsProduct:
@@ -46,8 +46,8 @@ def scrape_to_woolworths_product(scrape_product: dict):
     prod.image = scrape_product["LargeImageFile"]
 
     prod.price = scrape_product["Price"]
-    prod.viewed_date = get_previous_wednesday()
-    prod.tentative_end_date = get_upcoming_tuesday()
+    prod.viewed_date = to_format_str(get_previous_wednesday())
+    prod.tentative_end_date = to_format_str(get_upcoming_tuesday())
     prod.cost_per_unit = scrape_product["CupPrice"]
     prod.cost_per_unit_measure = scrape_product["CupMeasure"]
     prod.previous_price = (
