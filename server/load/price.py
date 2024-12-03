@@ -2,6 +2,7 @@ import pandas as pd
 from django.db import transaction
 from django.utils import dateparse
 
+from config import colors
 from products.models import Product, VendorProduct, Vendor, Price
 
 
@@ -13,7 +14,7 @@ def load_vendor_product_data(df: pd.DataFrame):
     - Django setup has been done
     - Product data has been loaded
     """
-    print("Loading vendor-product data into the database")
+    print(f"{colors.GREEN}Loading vendor-product data into the database{colors.RESET}")
     df.drop_duplicates(["barcode", "vendor"], inplace=True)
     existing_vendors = Vendor.objects.values_list("name", flat=True)
     vendors_to_insert = [
@@ -54,8 +55,12 @@ def load_vendor_product_data(df: pd.DataFrame):
                 )
             )
 
-    print(f"Inserting {len(insert_records)} new vendor-products")
-    print(f"Updating {len(update_records)} existing vendor-products")
+    print(
+        f"Inserting {colors.BLUE}{len(insert_records)}{colors.RESET} new vendor-products"
+    )
+    print(
+        f"Updating {colors.YELLOW}{len(update_records)}{colors.RESET} existing vendor-products"
+    )
 
     with transaction.atomic():
         if insert_records:
@@ -74,7 +79,7 @@ def load_price_data(df: pd.DataFrame):
     - Product data has been loaded
     - VendorProduct data has been loaded
     """
-    print("Loading price data into the database")
+    print(f"{colors.GREEN}Loading price data into the database{colors.RESET}")
     df.drop_duplicates(
         ["barcode", "vendor", "viewed_date"], inplace=True
     )  # Unique product viewed on a day
@@ -131,8 +136,10 @@ def load_price_data(df: pd.DataFrame):
                 )
             )
 
-    print(f"Inserting {len(insert_records)} new prices")
-    print(f"Updating {len(update_records)} existing prices")
+    print(f"Inserting {colors.BLUE}{len(insert_records)}{colors.RESET} new prices")
+    print(
+        f"Updating {colors.YELLOW}{len(update_records)}{colors.RESET} existing prices"
+    )
 
     with transaction.atomic():
         if insert_records:
