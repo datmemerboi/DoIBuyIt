@@ -13,13 +13,17 @@ class VendorProductSerializer(serializers.ModelSerializer):
         model = VendorProduct
         fields = "__all__"
 
+
 # TODO: ProductPriceSerializer biding barcode with top 2 prices,
 # preferably with unique vendors.
 
 # TODO: Use the same searializer, with additional args to fetch
 # entire price history of the product.
 
+
 class PriceSerializer(serializers.ModelSerializer):
+    product = ProductSerializer(read_only=True)
+
     class Meta:
         model = Price
         fields = "__all__"
@@ -29,16 +33,7 @@ class PriceSerializer(serializers.ModelSerializer):
         return price
 
     def update(self, instance, validated_data):
-        instance.price = validated_data.get("price", instance.price)
-        instance.viewed_date = validated_data.get("viewed_date", instance.viewed_date)
-        instance.tentative_end_date = validated_data.get(
-            "tentative_end_date", instance.tentative_end_date
-        )
-        instance.cost_per_unit = validated_data.get(
-            "cost_per_unit", instance.cost_per_unit
-        )
-        instance.cost_per_unit_measure = validated_data.get(
-            "cost_per_unit_measure", instance.cost_per_unit_measure
-        )
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
         instance.save()
         return instance
