@@ -1,5 +1,6 @@
 import pandas as pd
 from django.db import transaction
+from django.utils import dateparse
 
 from products.models import Product, VendorProduct, Vendor, Price
 
@@ -38,13 +39,12 @@ def load_vendor_product_data(df: pd.DataFrame):
             record["barcode"] in product_vendors_map
             and record["vendor"] in product_vendors_map[record["barcode"]]
         ):
-            update_records.append(
-                VendorProduct(
-                    product=Product.objects.get(pk=record["barcode"]),
-                    vendor=Vendor.objects.get(pk=record["vendor"]),
-                    url=record["url"],
-                )
+            vp = VendorProduct.objects.get(
+                product=Product.objects.get(pk=record["barcode"]),
+                vendor=Vendor.objects.get(pk=record["vendor"]),
             )
+            vp.url = record["url"]
+            update_records.append(vp)
         else:
             insert_records.append(
                 VendorProduct(
@@ -87,7 +87,7 @@ def load_price_data(df: pd.DataFrame):
 
     existing_records_map = {}
     for er in existing_records:
-        existing_records_map.setdefault(er.get("product"), {}).append(
+        existing_records_map.setdefault(er.get("product"), []).append(
             {"vendor": er.get("vendor_product"), "viewed_date": er.get("viewed_date")}
         )
 
@@ -98,13 +98,38 @@ def load_price_data(df: pd.DataFrame):
 
     for record in price_list:
         if record.get("barcode") in existing_records_map:
-            er = existing_records_map[record.get("barcode")]
-            if record.get("vendor") == er.get("vendor") and record.get(
-                "viewed_date"
-            ) == er.get("viewed_date"):
+            # Find first existing record with the same barcode, vendor and viewed_date
+
+            is_existing_record = next(
+                (
+                    vendor_view_date
+                    for vendor_view_date in existing_records_map[record.get("barcode")]
+                    if record.get("vendor") == vendor_view_date.get("vendor")
+                    and record.get("viewed_date") == vendor_view_date.get("viewed_date")
+                ),
+                None,
+            )
+
+            if is_existing_record:
                 update_records.append(Price(**record))
         else:
-            insert_records.append(Price(**record))
+            prod = Product.objects.get(pk=record.get("barcode"))
+            vend = Vendor.objects.get(pk=record.get("vendor"))
+            vp = VendorProduct.objects.get(product=prod, vendor=vend)
+
+            insert_records.append(
+                Price(
+                    price=record.get("price"),
+                    viewed_date=dateparse.parse_datetime(record.get("viewed_date")),
+                    tentative_end_date=dateparse.parse_datetime(
+                        record.get("tentative_end_date")
+                    ),
+                    cost_per_unit=record.get("cost_per_unit"),
+                    cost_per_unit_measure=record.get("cost_per_unit_measure"),
+                    product=prod,
+                    vendor_product=vp,
+                )
+            )
 
     print(f"Inserting {len(insert_records)} new prices")
     print(f"Updating {len(update_records)} existing prices")
