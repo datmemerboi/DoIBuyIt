@@ -105,18 +105,18 @@ def load_price_data(df: pd.DataFrame):
         if record.get("barcode") in existing_records_map:
             # Find first existing record with the same barcode, vendor and viewed_date
 
-            is_existing_record = next(
-                (
-                    vendor_view_date
-                    for vendor_view_date in existing_records_map[record.get("barcode")]
-                    if record.get("vendor") == vendor_view_date.get("vendor")
-                    and record.get("viewed_date") == vendor_view_date.get("viewed_date")
-                ),
-                None,
-            )
+            for existing_vendor_view_date in existing_records_map[
+                record.get("barcode")
+            ]:
+                # TODO: fix this vendor = "WWL" == 576
+                if record.get("vendor") == existing_vendor_view_date.get(
+                    "vendor"
+                ) and record.get("viewed_date") == existing_vendor_view_date.get(
+                    "viewed_date"
+                ):
+                    update_records.append(Price(**record))
+                    break
 
-            if is_existing_record:
-                update_records.append(Price(**record))
         else:
             prod = Product.objects.get(pk=record.get("barcode"))
             vend = Vendor.objects.get(pk=record.get("vendor"))
