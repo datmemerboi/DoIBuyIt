@@ -1,8 +1,10 @@
 import pandas as pd
+from datetime import datetime
 from django.db import transaction
 from django.utils import dateparse
 
 from config import colors
+from config.constants import CSV_FILE_DATE_FORMAT
 from products.models import Product, VendorProduct, Vendor, Price
 
 
@@ -88,7 +90,7 @@ def load_price_data(df: pd.DataFrame):
 
     existing_records = Price.objects.filter(
         product__in=all_barcordes, vendor_product__vendor__in=all_vendors
-    ).values("product", "vendor_product", "viewed_date")
+    ).values("product", "vendor_product__vendor", "viewed_date")
 
     existing_records_map = {}
     for er in existing_records:
@@ -108,11 +110,10 @@ def load_price_data(df: pd.DataFrame):
             for existing_vendor_view_date in existing_records_map[
                 record.get("barcode")
             ]:
-                # TODO: fix this vendor = "WWL" == 576
                 if record.get("vendor") == existing_vendor_view_date.get(
-                    "vendor"
-                ) and record.get("viewed_date") == existing_vendor_view_date.get(
-                    "viewed_date"
+                    "vendor_product__vendor"
+                ) and record.get("viewed_date") == datetime.strftime(
+                    existing_vendor_view_date.get("viewed_date"), CSV_FILE_DATE_FORMAT
                 ):
                     update_records.append(Price(**record))
                     break
