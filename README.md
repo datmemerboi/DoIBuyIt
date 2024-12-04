@@ -3,7 +3,10 @@ Do I Buy It?
 
 From Woolies or Coles?
 
-Check barcodes [here](https://www.mustakshif.com/product/detail/9300617408710)
+Check barcodes [here](https://www.mustakshif.com/product/detail/9300617408710) and [here](https://world.openfoodfacts.org/api/v0/product/93561471.json)
+Possibly look into [Prisma ORM](https://www.prisma.io/docs). This, in combination with Next's inbuild BE rendering, would replace Django.
+
+NOTE: The site logo will use Coolvetica.
 
 ## Data structure
 

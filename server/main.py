@@ -1,14 +1,16 @@
 import json
 import django
+import requests
 from sys import argv
 from os import path, environ
-from requests_cache import CachedSession
+
 
 environ.setdefault("DJANGO_SETTINGS_MODULE", "doibuyit.settings")
 django.setup()
 
 from config.constants import RESULTS_FOLDER
 from load.product import load_product_data
+from load.price import load_price_data, load_vendor_product_data
 from utils.date import make_prefix
 from transform.product import create_product_df
 from transform.price import create_price_df
@@ -16,11 +18,19 @@ from transform.dataframe import save_csv
 from transform.woolworths import pick_products
 from spiders.woolworths import Woolworths
 
-session = CachedSession()
-session.get("https://www.woolworths.com.au", refresh=True)
+
+session = requests.Session()
+session.get(
+    "https://www.woolworths.com.au",
+    headers={
+        "Accept": "application/json, */*",
+        "Content-Type": "application/json",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.",
+    },
+)
 
 product_list = []
-for i in range(1, 5):
+for i in range(1, 20):
     print(".", end="")
     product_list.extend(
         pick_products(
@@ -43,3 +53,5 @@ product_csv_path = path.abspath(path.join(RESULTS_FOLDER, product_csv_name))
 save_csv(product_df, product_csv_path)
 
 load_product_data(product_df)
+load_vendor_product_data(price_df)
+load_price_data(price_df)

@@ -4,7 +4,12 @@ module.exports = {
       {
         protocol: "https",
         hostname: "os.alipayobjects.com",
-        port: "",
+        port: ""
+      },
+      {
+        protocol: "https",
+        hostname: "cdn1.woolworths.media",
+        port: ""
       }
     ]
   }

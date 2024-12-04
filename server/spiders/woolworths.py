@@ -1,6 +1,7 @@
+from requests import Session
 from urllib.parse import urlencode
-from requests_cache import CachedSession
 
+from config import colors
 from utils.category import get_category_id_url
 
 
@@ -15,10 +16,12 @@ class Woolworths:
 
     @staticmethod
     def category(
-        session: CachedSession, category_name: str, page: int = 1, size: int = 36
+        session: Session, category_name: str, page: int = 1, size: int = 36
     ) -> list:
         url = Woolworths.category_url
-        category_id, category_url = get_category_id_url(Woolworths.vendor, category_name)
+        category_id, category_url = get_category_id_url(
+            Woolworths.vendor, category_name
+        )
         if category_id is None or category_url is None:
             print(f"Category not found: {category_name}")
             return []
@@ -53,7 +56,9 @@ class Woolworths:
 
         if res.status_code != 200:
             print(res.status_code)
-            print(f"Failed to fetch data for category: {category_name}")
+            print(
+                f"{colors.RED}Failed to fetch data for category: {category_name}{colors.RESET}"
+            )
             return []
         return res.json()
 
@@ -86,7 +91,7 @@ class Woolworths:
 
         if res.status_code != 200:
             print(res.status_code)
-            print(f"Failed to fetch data for {keyword}")
+            print(f"{colors.RED}Failed to fetch data for {keyword}{colors.RESET}")
             return []
         return res.json()
 
