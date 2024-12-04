@@ -1,6 +1,7 @@
 import pandas as pd
 from django.db import transaction
 
+from config import colors
 from products.models import Product
 
 
@@ -10,9 +11,8 @@ def load_product_data(df: pd.DataFrame):
 
     Assumes django setup has been done.
     """
-    print("Loading product data into the database")
+    print(f"{colors.MAGENTA}Loading product data into the database{colors.RESET}")
     all_barcordes = df["barcode"].unique().tolist()
-    print(df['barcode'].size)
     df.drop_duplicates("barcode", inplace=True)
     product_list = df.to_dict(orient="records")
 
@@ -31,8 +31,8 @@ def load_product_data(df: pd.DataFrame):
         else:
             insert_records.append(Product(**record))
 
-    print(f"Inserting {len(insert_records)} new records")
-    print(f"Updating {len(update_records)} existing records")
+    print(f"Inserting {colors.BLUE}{len(insert_records)} new{colors.RESET} records")
+    print(f"Updating {colors.YELLOW}{len(update_records)} existing{colors.RESET} records")
 
     with transaction.atomic():
         if insert_records:
