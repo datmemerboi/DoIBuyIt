@@ -1,10 +1,13 @@
+from datetime import datetime
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from rest_framework import viewsets
 from rest_framework.pagination import PageNumberPagination
 
+from utils.date import get_upcoming_tuesday, to_format_str
 from products.models import Product, Price, Vendor, VendorProduct
+from products.paginations import PricePagination, ProductPagination
 from products.serializers import (
     ProductSerializer,
     PriceSerializer,
@@ -13,21 +16,23 @@ from products.serializers import (
 )
 
 
-class PriceSetPagination(PageNumberPagination):
-    page_size = 100
-    page_size_query_param = "page_size"
-    max_page_size = 200
-
-
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    pagination_class = ProductPagination
 
 
 class PriceViewSet(viewsets.ModelViewSet):
-    queryset = Price.objects.all()
+    # Fetch products on discount this week,
+    # sorted by price in ascending order.
+    queryset = (
+        Price.objects.exclude(price=-1)
+        .filter(tentative_end_date=to_format_str(get_upcoming_tuesday(datetime.now())))
+        .order_by("price")
+    )
     serializer_class = PriceSerializer
-    pagination_class = PriceSetPagination
+    pagination_class = PricePagination
+    # TODO: Query param to order price / filter above certain price.
 
 
 class VendorsViewSet(viewsets.ModelViewSet):

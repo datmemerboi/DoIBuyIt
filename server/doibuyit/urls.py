@@ -21,7 +21,7 @@ from rest_framework import routers
 
 from products import views
 
-r = routers.DefaultRouter()
+r = routers.DefaultRouter(trailing_slash=False)
 r.register(r"products", views.ProductViewSet)
 r.register(r"prices", views.PriceViewSet)
 r.register(r"vendors", views.VendorsViewSet)
