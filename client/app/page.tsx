@@ -5,28 +5,53 @@ import ProductCard from "@/components/ProductCard";
 
 const productCardsContainer = "flex flex-row flex-wrap justify-center";
 
+type Price = {
+  product: {
+    barcode: string;
+    name: string;
+    brand: string;
+    image: string;
+  };
+  price: string | number;
+  viewed_date: string;
+  tentative_end_date: string;
+  cost_per_unit: number;
+  cost_per_unit_measure: string;
+  vendor_product: string;
+};
+
 const App: React.FC = async () => {
-  let prodReq = await fetch("http://localhost:8080/products");
-  let products = await prodReq.json();
+  let prices: Price[] = [];
+  try {
+    let prodReq = await fetch("http://localhost:8080/prices?format=json");
+    let pricesPage = await prodReq.json();
+    prices = pricesPage.results;
+  } catch (error) {
+    console.error(error);
+  }
 
   return (
     <div>
       <div className="flex flex-col flex-wrap justify-center">
         <div className="flex flex-row justify-center">
-          <Input type="main-search" placeholder="Search for product..." />
+          <h1 className="text-4xl font-bold">Do I Buy It?</h1>
         </div>
+        {/* <div className="flex flex-row justify-center">
+          <Input type="main-search" placeholder="Search for product..." />
+        </div> */}
 
         <div className={productCardsContainer}>
-          {products.map((product) => (
-            <ProductCard
-              key={product.barcode}
-              title={product.name}
-              vendor="Woolworths"
-              brand={product.brand}
-              price={35.01}
-              image={product.image}
-            />
-          ))}
+          {prices.length &&
+            prices.map((priceObj) => (
+              <ProductCard
+                key={priceObj.product.barcode}
+                title={priceObj.product.name}
+                vendor="Woolworths"
+                brand={priceObj.product.brand}
+                price={priceObj.price > 0 ? priceObj.price : "N/A"}
+                image={priceObj.product.image}
+              />
+            ))}
         </div>
       </div>
     </div>
