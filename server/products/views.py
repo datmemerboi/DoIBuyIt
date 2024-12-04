@@ -1,21 +1,44 @@
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
-from products.models import Product, Price, VendorProduct
-from products.serializers import ProductSerializer, PriceSerializer, VendorProductSerializer
 from rest_framework import viewsets
+from rest_framework.pagination import PageNumberPagination
+
+from products.models import Product, Price, Vendor, VendorProduct
+from products.serializers import (
+    ProductSerializer,
+    PriceSerializer,
+    VendorProductSerializer,
+    VendorSerializer,
+)
+
+
+class PriceSetPagination(PageNumberPagination):
+    page_size = 100
+    page_size_query_param = "page_size"
+    max_page_size = 200
+
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
+
 class PriceViewSet(viewsets.ModelViewSet):
     queryset = Price.objects.all()
     serializer_class = PriceSerializer
+    pagination_class = PriceSetPagination
+
+
+class VendorsViewSet(viewsets.ModelViewSet):
+    queryset = Vendor.objects.all()
+    serializer_class = VendorSerializer
+
 
 class VendorProductViewSet(viewsets.ModelViewSet):
     queryset = VendorProduct.objects.all()
     serializer_class = VendorProductSerializer
+
 
 @csrf_exempt
 def product_list(request):
