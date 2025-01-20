@@ -18,12 +18,35 @@
     {
       "type": "debugpy",
       "request": "launch",
-      "name": "Run main.py",
+      "name": "Run django server",
+      "python": "${workspaceFolder}/env/bin/python",
+      "program": "${workspaceFolder}/server/manage.py",
+      "args": [
+        "runserver",
+        "8080",
+      ],
+      "django": true,
+    },
+    {
+      "type": "debugpy",
+      "request": "launch",
+      "name": "ETL",
       "program": "${workspaceFolder}/server/main.py",
       "python": "${workspaceFolder}/env/bin/python",
       "env": {
         "PYTHONPATH": "${workspaceFolder}/server"
       }
+    },
+    {
+      "type": "debugpy",
+      "name": "Py: Current File",
+      "program": "${file}",
+      "python": "${workspaceFolder}/env/bin/python",
+      "request": "launch",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/server"
+      },
+      "console": "integratedTerminal"
     }
   ]
 }
