@@ -33,3 +33,11 @@ def make_prefix() -> str:
 
 def to_format_str(date: datetime) -> str:
     return date.strftime(CSV_FILE_DATE_FORMAT)
+
+
+def to_datetime(date_str: str) -> datetime:
+    return datetime.strptime(date_str, CSV_FILE_DATE_FORMAT)
+
+
+def to_timestamp(date_str: str) -> float:
+    return datetime.strptime(date_str, CSV_FILE_DATE_FORMAT).timestamp()
