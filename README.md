@@ -29,16 +29,16 @@ NOTE: The site logo will use Coolvetica.
 ### Product table
 
 | **barcode** | **name** | **brand** | **image** |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- |
 | 9300617408710 | 320104 | Cadbury Twirl Milk Chocolate Bar 39g | cadbury-twirl-milk-chocolate-bar-chocolate-bar | Cadbury | https://cdn1.woolworths.media/content/wowproductimages/medium/320104.jpg |
 
 
 
 ### Prices table
 
-| **barcode** | **vendor** | **price** | **previous_price** | **viewed_date** | **tentative_end_date** | **cost_per_unit** | **cost_per_unit_measure** |
-|---|---|---|---|---|---|---|---|
-| 9300617408710 | W | 1.25 | 2.5 | 1730206800 | 1730811540 | 3.21 | 100G |
+|**barcode**|**vendor**|**price**|**previous_price**|**viewed_date**|**tentative_end_date**|**cost_per_unit**|**cost_per_unit_measure**|
+| --- | --- | --- | --- | --- | --- | --- | --- |
+9300617408710 | W | 1.25 | 2.5 | 1730206800 | 1730811540 | 3.21 | 100G
 
 ### Category names mapping
 | **Display Name** | **Category name in code** |
