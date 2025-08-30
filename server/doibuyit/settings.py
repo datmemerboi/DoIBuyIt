@@ -83,11 +83,11 @@ WSGI_APPLICATION = "doibuyit.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "doibuyit",
-        "USER": "dibi_user",
-        "PASSWORD": "dibi_password",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "NAME": environ.get("DB_NAME", "doibuyit"),
+        "USER": environ.get("DB_USER", "dibi_user"),
+        "PASSWORD": environ.get("DB_PASSWORD", "dibi_password"),
+        "HOST": environ.get("DB_HOST", "localhost"),
+        "PORT": environ.get("DB_PORT", "5432"),
     }
 }
 

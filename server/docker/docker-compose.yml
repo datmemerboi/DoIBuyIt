@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:latest
+    container_name: doibuyit-postgres
+    environment:
+      POSTGRES_DB: doibuyit
+      POSTGRES_USER: dibi_user
+      POSTGRES_PASSWORD: dibi_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./.data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dibi_user -d doibuyit"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - dibi-network
+
+  # Backend server Application
+  server:
+    build: 
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: doibuyit-server
+    environment:
+      - DJANGO_SECRET=your-secret-key-here
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=doibuyit
+      - DB_USER=dibi_user
+      - DB_PASSWORD=dibi_password
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - dibi-network
+    command: >
+      sh -c "
+        echo 'Waiting for database...' &&
+        uv run python manage.py migrate &&
+        echo 'Starting server...' &&
+        uv run python manage.py runserver 0.0.0.0:8000
+      "
+
+networks:
+  dibi-network:
+    driver: bridge
