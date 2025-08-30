@@ -4,8 +4,11 @@
   ```bash
   uv sync --all-groups
   ```
-
-2. **Run the Django app with Uvicorn**:
+2. Import data
   ```bash
-  uv run python manage.py runserver
+  python manage.py shell < main.py
+  ```
+3. Run the django server
+  ```bash
+  uv run python manage.py runserver 8080
   ```
