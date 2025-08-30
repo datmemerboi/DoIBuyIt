@@ -2,12 +2,16 @@
 env/*
 .env*
 !.env.example
+**/.venv/
+**/venv/
 
 # Dependencies
 node_modules/
 **/node_modules/
 **/npm-debug.log
 **/yarn-error.log
+
+**/.yarn/
 
 # Build
 **/build/*
