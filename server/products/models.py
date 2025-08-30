@@ -1,6 +1,12 @@
+from uuid import uuid4
 from django.db import models
 
-VENDOR_SLUGS = (("WWL", "WWL"),)
+
+class VendorSlugEnum(models.TextChoices):
+    WWL = "WWL"
+    COLES = "COL"
+    CHEMIST_WAREHOUSE = "CHW"
+
 
 class Product(models.Model):
     barcode = models.CharField(max_length=255, primary_key=True)
@@ -10,10 +16,15 @@ class Product(models.Model):
 
 
 class Vendor(models.Model):
-    name = models.CharField(max_length=5, choices=VENDOR_SLUGS, primary_key=True)
+    name = models.CharField(
+        max_length=5,
+        choices=VendorSlugEnum.choices,
+        primary_key=True,
+    )
 
 
 class VendorProduct(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     vendor = models.ForeignKey(
         Vendor, on_delete=models.CASCADE, related_name="products"
@@ -25,6 +36,7 @@ class VendorProduct(models.Model):
 
 
 class Price(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     product = models.ForeignKey(
         Product, on_delete=models.CASCADE, related_name="prices"
     )
