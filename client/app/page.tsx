@@ -48,7 +48,13 @@ const App: React.FC = async () => {
                 title={priceObj.product.name}
                 vendor="Woolworths"
                 brand={priceObj.product.brand}
-                price={priceObj.price > 0 ? priceObj.price : "N/A"}
+                price={
+                  typeof priceObj.price === "number" &&
+                  Number.isFinite(priceObj.price) &&
+                  priceObj.price > 0
+                    ? priceObj.price
+                    : null
+                }
                 image={priceObj.product.image}
               />
             ))}
