@@ -1,4 +1,8 @@
+import numpy as np
+import pandas as pd
 from pandas import json_normalize, DataFrame
+
+from utils.date import to_timestamp
 
 
 def create_price_df(products: list[dict]) -> DataFrame:
@@ -24,3 +28,11 @@ def create_price_df(products: list[dict]) -> DataFrame:
             "url",
         ]
     ]
+
+
+def poly_fit(src_df: DataFrame, trg_df: DataFrame, column: str) -> np.ndarray:
+    df = pd.concat([src_df, trg_df], join="inner")
+    dates = df["viewed_date"]
+    timestamps = dates.apply(to_timestamp)
+    values = df[column]
+    return np.polyfit(timestamps, values, 1)
