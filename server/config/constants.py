@@ -5,7 +5,12 @@ from dateutil.tz import gettz
 WWL_CATEGORY_MAP_FILE = path.abspath(
     path.join(path.dirname(__file__), "..", "..", "category_map.json")
 )
-RESULTS_FOLDER = path.abspath(path.join(path.dirname(__file__), "..", "..", "data"))
+COL_CATEGORY_MAP_FILE = path.abspath(
+    path.join(path.dirname(__file__), "..", "..", "category_map_coles.json")
+)
+RESULTS_FOLDER = path.abspath(
+    path.join(path.dirname(__file__), "..", "..", "data")
+)
 
 # Date formats
 CSV_NAME_PREFIX_FORMAT = "%Y-%m-%dT%H:%M_"
@@ -13,7 +18,7 @@ CSV_FILE_DATE_FORMAT = "%Y-%m-%dT%H:%M:%S%z"
 APP_TIMEZONE_NAME = "Australia/Melbourne"
 APP_TIMEZONE = gettz(APP_TIMEZONE_NAME)
 
-HTTP_GET_HEADERS = {
+COL_HTTP_GET_HEADERS = {
     "Orgin": "https://www.coles.com.au",
     "Referer": "https://www.coles.com.au/",
     "Accept": "*/*",
