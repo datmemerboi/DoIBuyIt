@@ -10,18 +10,10 @@ class Woolworths:
     vendor: str = "WWL"
     category_url: str = "https://www.woolworths.com.au/apis/ui/browse/category"
 
-    headers: dict = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
-    }
-
     @staticmethod
-    def category(
-        session: Session, category_name: str, page: int = 1, size: int = 36
-    ) -> list:
+    def category(session: Session, category_name: str, page: int = 1, size: int = 36) -> list:
         url = Woolworths.category_url
-        category_id, category_url = get_category_id_url(
-            Woolworths.vendor, category_name
-        )
+        category_id, category_url = get_category_id_url(Woolworths.vendor, category_name)
         if category_id is None or category_url is None:
             print(f"Category not found: {category_name}")
             return []
@@ -30,7 +22,9 @@ class Woolworths:
             "Accept": "application/json, */*",
             "Content-Type": "application/json",
             "Referer": "https://www.woolworths.com.au/shop/browse/specials/half-price",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+            + "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 "
+            + "Safari/537.",
         }
         body = {
             "categoryId": category_id,
@@ -56,9 +50,7 @@ class Woolworths:
 
         if res.status_code != 200:
             print(res.status_code)
-            print(
-                f"{colors.RED}Failed to fetch data for category: {category_name}{colors.RESET}"
-            )
+            print(f"{colors.RED}Failed to fetch data for category: " + f"{category_name}{colors.RESET}")
             return []
         return res.json()
 
@@ -78,10 +70,11 @@ class Woolworths:
             "Referer": f"https://www.woolworths.com.au/shop/search/products?searchTerm={keyword}",
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.",
         }
+        location = f"/shop/search/products?{urlencode({'searchTerm': keyword})}"
         body = {
             "Filters": [],
             "IsSpecial": False,
-            "Location": f'/shop/search/products?{urlencode({"searchTerm": keyword})}',
+            "Location": location,
             "PageNumber": 1,
             "PageSize": 36,
             "SearchTerm": keyword,
