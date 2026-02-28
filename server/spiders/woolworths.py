@@ -1,5 +1,6 @@
 from requests import Session
 from urllib.parse import urlencode
+from requests_cache import CachedSession
 
 from config import colors
 from utils.category import get_category_id_url
@@ -57,7 +58,7 @@ class Woolworths:
     @staticmethod
     def search(keyword: str) -> list:
         session = CachedSession()
-        _filter = [{"Key": "Category", "Items": [{"Term": "1-E5BEE36E"}]}]
+        # _filter = [{"Key": "Category", "Items": [{"Term": "1-E5BEE36E"}]}]
 
         if Woolworths._session_id is None:
             session.get("https://www.woolworths.com.au", refresh=True)
@@ -68,7 +69,7 @@ class Woolworths:
             "Accept": "application/json, */*",
             "Content-Type": "application/json",
             "Referer": f"https://www.woolworths.com.au/shop/search/products?searchTerm={keyword}",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.",  # noqa: E501
         }
         location = f"/shop/search/products?{urlencode({'searchTerm': keyword})}"
         body = {
